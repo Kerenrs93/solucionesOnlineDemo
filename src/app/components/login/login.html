@@ -1,18 +1,18 @@
-<form >
+<form [formGroup]="formLogin" (ngSubmit)="validateUser($event)">
     <div class="form-group row">
-        <label for="emailLogin" class="col-sm-2 col-form-label">Correo</label>
+        <label for="emailLogin" class="col-sm-2 col-form-label">Usuario</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="emailLogin" value="email@example.com">
+            <input type="text" class="form-control" id="userLogin" formControlName="nameLogin">
         </div>
     </div>
     <div class="form-group row">
         <label for="passwordLogin" class="col-sm-2 col-form-label">Contraseña</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="passwordLogin" placeholder="Password">
+            <input type="password" class="form-control" id="passwordLogin" formControlName="passwordLogin">
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-sm-10">
+        <div class="col-sm-10 text-end">
             <button type="submit" class="btn btn-primary">Sign in</button>
         </div>
     </div>
