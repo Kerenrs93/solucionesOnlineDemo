@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import {PostService} from '../../services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  private id:number;
+  public dataPost;
+  constructor(public postService:PostService, private route:ActivatedRoute,public router:Router) 
+  { 
+
+    this.loadPost();
+  }
 
   ngOnInit(): void {
   }
 
+  loadPost(){
+    this.id=parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    this.postService.getPosts(this.id)
+    .subscribe((post)=>{
+      this.dataPost= post['service'];
+    });
+  }
+
+  loadChat(idUser, idService){
+    this.router.navigate([`/chat/${this.id}/${idUser}/${idService}`], {relativeTo: this.route});
+    //this.router.navigateByUrl(`chat`);
+  }
 }
