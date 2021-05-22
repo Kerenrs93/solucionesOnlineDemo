@@ -12,15 +12,12 @@ export class RegisterService {
 
   getUser(userData){
     const path=`${this.api}/register`;
-    //const response=this.http.get(path,userData,{responseType: ''});
     const response=this.http.post(path,userData);
     return response;
   }
 
   createUser(registerUserData){
     const path=`${this.api}/register`;
-    // let encoded_data = JSON.stringify({registerUserData});
-     console.log(registerUserData);
     const response=this.http.post(path,registerUserData,{responseType: 'text'});
     return response;
   }
