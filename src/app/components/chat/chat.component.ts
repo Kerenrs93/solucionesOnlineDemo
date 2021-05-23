@@ -16,41 +16,37 @@ export class ChatComponent implements OnInit {
   messages:Imessage[]=[];
   constructor(public chatService: ChatService) 
   {
-    // this.echo=new Echo({
-    //   broadcaster: 'pusher',
-    //   key: environment.pusherKey,
-    //   wsHost: environment.pusherHost,
-    //   cluster: environment.pusherCluster,
-    //   authEndpoint: `${environment.urlApi}/broadcasting/auth`,
-    //   auth: {
-    //     headers:{
-    //       accept:'application/json',
-    //     }
-    //   },
-    //   wsPort: 6001,
-    //   forceTLS: false,
-    //   disableStats: true,
-    //   enabledTransports:['ws']
-    // });
+    this.echo=new Echo({
+      broadcaster: 'pusher',
+      key: environment.pusherKey,
+      wsHost: environment.pusherHost,
+      cluster: environment.pusherCluster,
+      authEndpoint: `${environment.urlApi}/broadcasting/auth`,
+      wsPort: 6001,
+      forceTLS: false,
+      disableStats: true,
+      enabledTransports:['ws']
+    });
    }
 
   ngOnInit(): void {
-    // this.echo.private('channel-chat')
-    // .listen('chatEvent',(resp)=>{
-    //   const message: Imessage={
-    //     message:this.inputMessage,
-    //     me:false
-    //   }
-    // })
+    this.echo.private('channel-chat')
+    .listen('chatEvent',(resp)=>{
+      let message: Imessage={
+        message:this.inputMessage,
+        me:false
+      }
+    })
   }
 
   sendMessage(){
     this.chatService.sendMessage(this.inputMessage)
     .subscribe((resp:any)=>{
-      const message: Imessage={
+      let message: Imessage={
         message:this.inputMessage,
         me:true
       }
+      this.inputMessage='';
       this.messages.push(message);
       console.log(this.messages);
     })
