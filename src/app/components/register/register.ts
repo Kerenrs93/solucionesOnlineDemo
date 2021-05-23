@@ -20,13 +20,16 @@ export class registerComponent implements OnInit {
   private buildForm() {
     this.form = new FormGroup({
       nameUser: new FormControl('', [Validators.required]),
-      emailRegister: new FormControl('', [Validators.email]),
-      passwordRegister: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.email]),
+      passwordUser: new FormControl('', [Validators.required]),
     });
   }
   registerUser(event:Event){
     event.preventDefault();
     const data = this.form.value;
-    this.registerService.registerUserService(data);
+    this.registerService.createUser(data)
+    .subscribe((newUser)=>{
+        console.log(newUser);
+    });
   }
 }
