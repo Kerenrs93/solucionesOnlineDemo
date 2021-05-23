@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import Echo from 'laravel-echo';
+import { environment } from 'src/environments/environment';
+import {ChatService} from '../../services/chat.service';
+import {Imessage} from  '../../interfaces/chat';
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +11,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  echo:Echo;
+  inputMessage:string;
+  messages:Imessage[]=[];
+  constructor(public chatService: ChatService) 
+  {
+    // this.echo=new Echo({
+    //   broadcaster: 'pusher',
+    //   key: environment.pusherKey,
+    //   wsHost: environment.pusherHost,
+    //   cluster: environment.pusherCluster,
+    //   authEndpoint: `${environment.urlApi}/broadcasting/auth`,
+    //   auth: {
+    //     headers:{
+    //       accept:'application/json',
+    //     }
+    //   },
+    //   wsPort: 6001,
+    //   forceTLS: false,
+    //   disableStats: true,
+    //   enabledTransports:['ws']
+    // });
+   }
 
   ngOnInit(): void {
+    // this.echo.private('channel-chat')
+    // .listen('chatEvent',(resp)=>{
+    //   const message: Imessage={
+    //     message:this.inputMessage,
+    //     me:false
+    //   }
+    // })
+  }
+
+  sendMessage(){
+    this.chatService.sendMessage(this.inputMessage)
+    .subscribe((resp:any)=>{
+      const message: Imessage={
+        message:this.inputMessage,
+        me:true
+      }
+      this.messages.push(message);
+      console.log(this.messages);
+    })
   }
 
 }
