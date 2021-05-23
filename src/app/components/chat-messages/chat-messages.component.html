@@ -1,22 +1,15 @@
 
-
-
-<div class="media w-50 mb3" *ngFor="let msj of messages">
-    <div class="media-body ml-3">
-        <div class="bg-light rounded py2 px-3 mb-2">
-            <p class="text-small mb-0 text-muted">
-                {{msj.messages}} y
-            </p>
-        </div>
+<div class="" *ngFor="let message of messages">
+    <div class="container" >
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9T9PTvS8Ky-BO042Q42w8Bvw4XmlPV33NCA&usqp=CAU" alt="Avatar" style="width:100%;">
+        <p>{{ message.message }}</p>
     </div>
+
+    <!-- <div class="container darker">
+        <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+        <p>Hey! I'm fine. Thanks for asking!</p>
+        <span class="time-left">11:01</span>
+    </div> -->
+
 </div>
 
-<!-- <div class="media w-50 ml-auto mb3">
-    <div class="media-body">
-        <div class="bg-primary rounded py2 px-3 mb-2">
-            <p class="text-small mb-0 text-muted">
-                probando div2324
-            </p>
-        </div>
-    </div>
-</div> -->

@@ -31,6 +31,6 @@ export class PostComponent implements OnInit {
 
   loadChat(idUser, idService){
     this.router.navigate([`/chat/${this.id}/${idUser}/${idService}`], {relativeTo: this.route});
-    //this.router.navigateByUrl(`chat`);
+    //USAR localstorage.setItems para guardar el nombre del servicio publicado
   }
 }

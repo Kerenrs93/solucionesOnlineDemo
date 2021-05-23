@@ -10,7 +10,7 @@ import {Imessage} from  '../../interfaces/chat';
 export class ChatMessagesComponent implements OnInit {
 
   @Input() messages:Imessage[]=[];
-  constructor() {console.log(this.messages)}
+  constructor() {}
 
   ngOnInit(): void {
   }
