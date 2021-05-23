@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  private api="http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) { }
 
 
   getUser(userData){
-    const path=`${this.api}/register`;
+    const path=`${environment.urlApi}/register`;
     const response=this.http.post(path,userData);
     return response;
   }
 
   createUser(registerUserData){
-    const path=`${this.api}/register`;
+    const path=`${environment.urlApi}/register`;
     const response=this.http.post(path,registerUserData,{responseType: 'text'});
     return response;
   }
